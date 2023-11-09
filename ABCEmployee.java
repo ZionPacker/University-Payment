@@ -18,4 +18,13 @@ public class ABCEmployee {
     public double calculateSalary(){
         return monthlySalary * 9;
     }
+
+    public String getDetails() {
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "Address: " + address + "\n" +
+                "Phone Number: " + phoneNumber + "\n" +
+                "ID: " + id + "\n" +
+                "Monthly Salary: " + monthlySalary + "\n" +
+                "Annual Salary: " + calculateSalary() + "\n";
+    }
 }
