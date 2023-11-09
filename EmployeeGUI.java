@@ -1,8 +1,8 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import payment.*;
 
 public class EmployeeGUI extends JFrame {
 
@@ -133,5 +133,3 @@ public class EmployeeGUI extends JFrame {
         });
     }
 }
-
-
