@@ -1,0 +1,87 @@
+/*
+Zion Packer
+October 28, 2023
+Programming Languages
+ */
+package payment;
+
+class ABCEmployee {
+    protected String firstName;
+    protected String lastName;
+    protected String phoneNumber;
+    protected String address;
+    protected int id;
+    protected double monthlySalary;
+
+    public ABCEmployee(String firstName, String lastName, String phoneNumber, String address, int id, double monthlySalary){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.id = id;
+        this.monthlySalary = monthlySalary;
+
+    }
+
+    public double calculateSalary(){
+        return monthlySalary * 9;
+    }
+
+}
+
+class Lecturer extends ABCEmployee{
+    public Lecturer(String firstName, String lastName, String phoneNumber, String address, int id, double basicMonthlySalary) {
+        super(firstName, lastName, phoneNumber, address, id, basicMonthlySalary);
+    }
+}
+
+class AssistantProfessor extends ABCEmployee{
+    private String summerCourseTitle;
+
+    public AssistantProfessor(String firstName , String lastName, String phoneNumber, String address, int id, double basicMonthlySalary) {
+        super(firstName, lastName, phoneNumber, address, id, basicMonthlySalary);
+    }
+
+    public void setSummerCourseTitle(String summerCourseTitle) {
+        this.setSummerCourseTitle = summerCourseTitle;
+    }
+
+    public double calculateSummerPayment() {
+
+        return 1.5 * basicMonthlySalary;
+    }
+
+    public double calculateAnnualPaymnet(){
+        return super.calculateSalary() + calculateSummerPayment();
+    }
+
+}
+
+class Professor extends AssistantProfessor{
+    private double grantAmount;
+
+    public Professor(String firstName, String lastName, String phoneNumber, String address, int id, double basicMonthlySalary) {
+        super(firstName, lastName, phoneNumber, address, id, basicMonthlySalary);
+    }
+
+    public void setGrantAmount(double grantAmount) {
+        this.grantAmount = grantAmount;
+    }
+
+    public double calculateBonusPayment() {
+        if (grantAmount > 1000000) {
+            return 7000;
+        }
+        return 0;
+    }
+
+    public double calculateAnnualPaymnet(){
+        return super.calculateSalary() + calculateSummerPayment();
+    }
+
+    public String getDetails(){
+        return super.getDetails() + "  " + calculateSummerPayment();
+    }
+
+
+}
+
