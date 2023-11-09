@@ -1,5 +1,5 @@
 public class AssistantProfessor extends ABCEmployee {
-    private String summerCourseTitle;
+    protected String summerCourseTitle;
     public double basicMonthlySalary;
 
     public AssistantProfessor(String firstName , String lastName, String phoneNumber, String address, int id, double basicMonthlySalary) {
@@ -11,12 +11,24 @@ public class AssistantProfessor extends ABCEmployee {
     }
 
     public double calculateSummerPayment() {
-
         return 1.5 * basicMonthlySalary;
     }
 
     public double calculateAnnualPaymnet(){
         return super.calculateSalary() + calculateSummerPayment();
+    }
+
+    @Override
+    public String getDetails() {
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "Address: " + address + "\n" +
+                "Phone Number: " + phoneNumber + "\n" +
+                "ID: " + id + "\n" +
+                "Summer Course Title: " + summerCourseTitle + "\n" +
+                "Summer Payment: " + calculateSummerPayment() + "\n" +
+                "Total Bonus Payment: " + calculateSummerPayment() + "\n" +
+                "Monthly Salary: " + monthlySalary + "\n" +
+                "Annual Salary: " + calculateSalary() + "\n";
     }
 
 }
