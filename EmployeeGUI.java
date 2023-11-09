@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 public class EmployeeGUI extends JFrame {
 
     
-    private JTextField firstNameField, lastNameField, addressField, telephoneField, idField, salaryField, summerPaymentField, bonusPaymentField;
+    private JTextField firstNameField, lastNameField, addressField, telephoneField, 
+        idField, salaryField, summerCourseField;
     private JButton calculateButton;
     private JTextArea detailsArea;
     private JComboBox<String> employeeTypeComboBox;
@@ -48,13 +49,9 @@ public class EmployeeGUI extends JFrame {
         salaryField = new JTextField(20);
         inputPanel.add(salaryField);
 
-        inputPanel.add(new JLabel("Summer Payment (Assistant Prof.):"));
-        summerPaymentField = new JTextField(20);
-        inputPanel.add(summerPaymentField);
-
-        inputPanel.add(new JLabel("Bonus Payment (Professor):"));
-        bonusPaymentField = new JTextField(20);
-        inputPanel.add(bonusPaymentField);
+        inputPanel.add(new JLabel("Summer Course Title:"));
+        summerCourseField = new JTextField(20);
+        inputPanel.add(summerCourseField);
 
         inputPanel.add(new JLabel("Employee Type:"));
         employeeTypeComboBox = new JComboBox<>(new String[]{"Lecturer", "Assistant Professor", "Professor"});
