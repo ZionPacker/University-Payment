@@ -8,7 +8,7 @@ public class EmployeeGUI extends JFrame {
 
     
     private JTextField firstNameField, lastNameField, addressField, telephoneField, 
-        idField, salaryField, summerCourseField;
+        idField, salaryField, summerCourseField, grantAmountField;
     private JButton calculateButton;
     private JTextArea detailsArea;
     private JComboBox<String> employeeTypeComboBox;
@@ -53,6 +53,10 @@ public class EmployeeGUI extends JFrame {
         summerCourseField = new JTextField(20);
         inputPanel.add(summerCourseField);
 
+        inputPanel.add(new JLabel("Grant Amount (Professor only):"));
+        grantAmountField = new JTextField(20);
+        inputPanel.add(grantAmountField);
+
         inputPanel.add(new JLabel("Employee Type:"));
         employeeTypeComboBox = new JComboBox<>(new String[]{"Lecturer", "Assistant Professor", "Professor"});
         inputPanel.add(employeeTypeComboBox);
@@ -94,39 +98,29 @@ public class EmployeeGUI extends JFrame {
         String telephone = telephoneField.getText();
         int id = Integer.parseInt(idField.getText());
         double salary = Double.parseDouble(salaryField.getText());
+        String summerCourse = summerCourseField.getText();
 
         // Create the correct type of employee and calculate payments
-        ABCEmployee employee;
+        ABCEmployee employee = new ABCEmployee(firstName, lastName, telephone, address, id, salary);
         String employeeType = (String) employeeTypeComboBox.getSelectedItem();
         switch (employeeType) {
             case "Lecturer":
-                employee = new Lecturer(firstName, lastName, address, telephone, id, salary);
+                employee = new Lecturer(firstName, lastName, telephone, address, id, salary);
                 break;
             case "Assistant Professor":
-                double summerPayment = Double.parseDouble(summerPaymentField.getText());
-                employee = new AssistantProfessor(firstName, lastName, address, telephone, id, salary);
-                ((AssistantProfessor) employee).setSummerCourseName("Summer Course"); // You would actually retrieve this from a user input
-                ((AssistantProfessor) employee).setSummerPayment(summerPayment);
+                AssistantProfessor aprof = new AssistantProfessor(firstName, lastName, telephone, address, id, salary);
+                aprof.setSummerCourseTitle(summerCourse);
+                employee = aprof;
                 break;
             case "Professor":
-                double bonusPayment = Double.parseDouble(bonusPaymentField.getText());
-                employee = new Professor(firstName, lastName, address, telephone, id, salary);
-                ((Professor) employee).setBonusPayment(bonusPayment);
+                Professor prof = new Professor(firstName, lastName, telephone, address, id, salary);
+                prof.setSummerCourseTitle(summerCourse);
+                prof.setGrantAmount(Double.parseDouble(grantAmountField.getText()));
+                employee = prof;
                 break;
-            default:
-                employee = new ABCEmployee(firstName, lastName, address, telephone, id, salary);
         }
 
         // Display the details
         detailsArea.setText(employee.getDetails());
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new EmployeeGUI();
-            }
-        });
     }
 }
