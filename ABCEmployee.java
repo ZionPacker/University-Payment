@@ -9,10 +9,10 @@ public class ABCEmployee {
     public ABCEmployee(String firstName, String lastName, String phoneNumber, String address, int id, double monthlySalary){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.id = id;
         this.monthlySalary = monthlySalary;
-
     }
 
     public double calculateSalary(){
